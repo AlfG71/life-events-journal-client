@@ -3,12 +3,15 @@ import { Routes, Route, Outlet, Navigate } from 'react-router-dom'
 
 import './App.css'
 import Signup from './pages/Signup'
+import Login from './pages/Login'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
-      <Signup />
+    <Routes>
+      <Route path='/signup' element={ <Signup /> } />
+      <Route path='/login' element={ <Login /> } />
+    </Routes>
   )
 }
 

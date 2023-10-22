@@ -32,7 +32,7 @@ function AuthProvider({ children }) {
       // We must send the JWT token in the request's "Authorization" Headers
       get('/auth/verify')
       .then((response) => {
-        // If the server verifies that the JWT token is valid
+        // If the server verifies that the token is valid
         const user = response.data;
        // Update state variables
         setIsLoggedIn(true);
