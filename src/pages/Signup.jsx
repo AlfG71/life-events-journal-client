@@ -29,6 +29,7 @@ const Signup = () => {
     post('/auth/signup', requestBody)
       .then((response) => {
         console.log("Created user ==>", response.data)
+        console.log("Token ===>", response.data.authToken) // undefined but works in Login page
       storeToken(response.data.authToken)
         authenticateUser()
         navigate('/profile');
