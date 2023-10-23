@@ -5,6 +5,7 @@ import './App.css'
 import Signup from './pages/Signup'
 import Login from './pages/Login'
 import Profile from './pages/Profile'
+import EditProfile from './components/EditProfile'
 
 function App() {
 
@@ -13,6 +14,7 @@ function App() {
       <Route path='/signup' element={<Signup /> } />
       <Route path='/login' element={<Login /> } />
       <Route path='/profile' element={<Profile /> } />
+      <Route path='/update' element={<EditProfile />} />
     </Routes>
   )
 }
