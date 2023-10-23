@@ -2,8 +2,7 @@ import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 import EditProfile from "../components/EditProfile";
-import DeleteProfile from "../components/DeleteProfile";
-
+import AddChild from "../components/AddChild";
 
 const Profile = () => {
 
@@ -14,6 +13,8 @@ const Profile = () => {
 
   const [willDelete, setWillDelete] = useState(false)
 
+  const [addChild, setAddChild] = useState(false)
+
   const handleEditClick = () => {
     setIsEditing(true);
   }
@@ -22,10 +23,16 @@ const Profile = () => {
     setWillDelete(true);
   }
 
+  const handleAddChildClick = () => {
+    setAddChild(true);
+  }
+
   if (isEditing) {
     return <EditProfile user={user} setIsEditing={setIsEditing} />;
   } else if (willDelete) {
     return <DeleteProfile user={user} setWillDelete={setWillDelete} />;
+  } else if (addChild) {
+    return <AddChild user={user} setAddChild={setAddChild} />
   } else {
     return (
       <>
@@ -34,10 +41,14 @@ const Profile = () => {
           <>
             <h2>Welcome {user.userName}!</h2>
             <img className="user-image" src={user.img} />
-            <p>{user.children}</p>
+            <p>
+              {user.children.map((child) => {
+                return <p>{child.name}</p>
+              })}
+            </p>
           </>
         )}
-        <Link to="/add-child">Add Child</Link>
+        <Link onClick={handleAddChildClick}>Add Child</Link>
         <Link onClick={handleEditClick}>Edit Profile</Link>
         <Link onClick={handleWillDelete}>Delete Profile</Link>
         <Link to="/signup">Logout</Link>
