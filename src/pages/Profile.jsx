@@ -19,6 +19,8 @@ const Profile = () => {
       <p>{user.children}</p>
 
       <Link to='/add-child'>Add Child</Link>
+      <Link to='/edit'>Edit Profile</Link>
+      <Link to='/delete'>Delete Profile</Link>
 
     </div>
   )
