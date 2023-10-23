@@ -30,7 +30,7 @@ const Signup = () => {
       .then((response) => {
         console.log("Created user ==>", response.data)
         console.log("Token ===>", response.data.authToken)
-      storeToken(response.data.authToken)
+        storeToken(response.data.authToken)
         authenticateUser()
         navigate('/profile');
       })
