@@ -1,12 +1,14 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 import EditProfile from "../components/EditProfile";
 import AddChild from "../components/AddChild";
 
+
 const Profile = () => {
 
-  const { user } = useContext(AuthContext)
+  const { user } = useContext(AuthContext);
+
   console.log("User ===>", user)
 
   const [isEditing, setIsEditing] = useState(false)
@@ -40,20 +42,23 @@ const Profile = () => {
         {user && (
           <>
             <h2>Welcome {user.userName}!</h2>
-            <img className="user-image" src={user.img} />
+            <img className="user-image" src={user.img} alt="User Image" />
             <p>
-              {user.children.map((child) => {
-                return <p>{child.name}</p>
-              })}
+              { user.children.map((child) => (
+
+                  <Link to={`/child-profile/${child._id}`}>{child.name}</Link>
+
+              ))}
             </p>
           </>
         )}
-        <Link onClick={handleAddChildClick}>Add Child</Link>
-        <Link onClick={handleEditClick}>Edit Profile</Link>
-        <Link onClick={handleWillDelete}>Delete Profile</Link>
+        <button onClick={handleAddChildClick}>Add Child</button>
+        <button onClick={handleEditClick}>Edit Profile</button>
+        <button onClick={handleWillDelete}>Delete Profile</button>
         <Link to="/signup">Logout</Link>
       </>
     );
+
   }
 }
 

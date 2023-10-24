@@ -1,6 +1,5 @@
 import { useState, useContext } from "react";
 import { AuthContext } from "../context/auth.context";
-import { useNavigate} from "react-router-dom";
 import { post } from "../services/authService";
 
 const AddChild = ({ setAddChild }) => { // convert to false on click
@@ -12,7 +11,6 @@ const AddChild = ({ setAddChild }) => { // convert to false on click
     image: "",
   });
 
-  const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState(undefined);
 
   const handleInputChange = (e) => {
@@ -51,7 +49,7 @@ const AddChild = ({ setAddChild }) => { // convert to false on click
 
         <label>Date of Birth:</label>
         <input
-          type="text"
+          type="date"
           name="dateOfBirth"
           value={childData.dateOfBirth}
           onChange={handleInputChange}
