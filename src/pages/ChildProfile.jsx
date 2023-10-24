@@ -2,10 +2,11 @@ import { useContext, useEffect, useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { AuthContext } from '../context/auth.context';
 import differenceInYears from 'date-fns/differenceInYears';
-import { axiosDelete } from '../services/authService'; // added
-
+import { axiosDelete, get } from '../services/authService';
+``
 import EditChild from '../components/EditChild';
 import AddEvent from '../components/AddEvent';
+
 
 const ChildProfile = () => {
     const { childId } = useParams();
@@ -13,6 +14,8 @@ const ChildProfile = () => {
     const [isEditing, setIsEditing] = useState(false);
 
     const [addEvent, setAddEvent] = useState(false);
+
+    const [events, setEvents] = useState(null);
 
     const navigate = useNavigate();
 
@@ -44,6 +47,17 @@ const ChildProfile = () => {
       }
     };
 
+    useEffect(() => {
+      get(`/events/all/${childId}`)
+        .then((res) => {
+          console.log(res)
+          setEvents(res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+    }, [childId])
+
     if (isEditing) {
       return <EditChild user={child} setIsEditing={setIsEditing} />;
     } else if (addEvent) {
@@ -56,11 +70,13 @@ const ChildProfile = () => {
           <p>Age: {Math.abs(differenceInYears(date, Date.now()))} </p>
           <img src={child.img} alt="Child's profile" />
           <p>
-            { child.events.map((event) => (
+            { events && events.map((event) => (
 
-                <Link to={`/all/${childId}`}>{event.eventTitle}</Link>
+                <Link to={`/event/${childId}/${event._id}`} key={event.Id}>
+                  {event.eventTitle}
+                </Link>
 
-            ))}
+            )) }
           </p>
           <button onClick={handleEditClick}>Edit Profile</button>
           <button onClick={deleteChildProfile}>Delete Profile</button>
