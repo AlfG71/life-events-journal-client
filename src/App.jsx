@@ -9,6 +9,7 @@ import EditProfile from './components/EditProfile'
 import Home from './pages/Home'
 import DeleteProfile from './components/DeleteProfile'
 import ChildProfile from './pages/ChildProfile'
+import ChildProfileDelete from './components/ChildProfileDelete'
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
       <Route path='/' element={<Home />} />
       <Route path='/delete' element={<DeleteProfile />} />
       <Route path="/child-profile/:childId" element={<ChildProfile />} />
+      <Route path='/delete-child/:childId' element={<ChildProfileDelete/>}/>y
     </Routes>
   )
 }

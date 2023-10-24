@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 import EditProfile from "../components/EditProfile";
 import AddChild from "../components/AddChild";
+import DeleteProfile from '../components/DeleteProfile'
 
 
 const Profile = () => {
