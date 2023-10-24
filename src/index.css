@@ -24,6 +24,8 @@ a:hover {
 }
 
 body {
+ 
+  background-image: url('https://img.freepik.com/free-vector/kids-doodles_1108-181.jpg?w=826&t=st=1698181491~exp=1698182091~hmac=729ae741d3b89f5cae48fb8bcb820b532efbfac81c32bb859645115a3753cec8');
   margin: 0;
   display: flex;
   place-items: center;
@@ -66,4 +68,24 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+
+
+
+/* custom.css */
+.SignupPage {
+  background: linear-gradient(to top, #FAF0D7, #FFD9C0, #8CC0DE, #CCEEBC); /* This will show if the image isn't found or while it's loading */
+  background-size: cover;  /* To make sure the image covers the whole div */
+  background-blend-mode: multiply; /* This will blend the image with the background color */
+  border-radius: 25px;  /* Adjust this value to make it as rounded as you like */
+}
+
+
+.LoginPage{
+  max-width: 500px;
+  margin: auto;
+  padding: 30px;
+  background-color: #f9f9f9;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
