@@ -9,7 +9,7 @@ const Profile = () => {
 
   const { user } = useContext(AuthContext);
 
-  console.log("User ===>", user)
+  // console.log("User ===>", user)
 
   const [isEditing, setIsEditing] = useState(false)
 

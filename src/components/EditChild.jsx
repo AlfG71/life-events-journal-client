@@ -9,8 +9,8 @@ const EditChild = ({ setIsEditing }) => {
 
   const { user } = useContext(AuthContext)
 
-  console.log("Child Id ===>", childId)
-  console.log("User ===>", user)
+  // console.log("Child Id ===>", childId)
+  // console.log("User ===>", user)
 
   const [editedChild, setEditedChild] = useState(null);
 
