@@ -2,11 +2,18 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/auth.context";
 import { Link, useNavigate } from "react-router-dom";
 import { post } from "../services/authService";
+import { useParams } from "react-router-dom";
 
-const EditProfile = ({ user, setIsEditing }) => {
-  console.log(user)
+const EditChild = ({ setIsEditing }) => {
+  const { childId } = useParams();
 
-  const [editedUser, setEditedUser] = useState(null); //Initialize editedUser with the user's data
+  const { user } = useContext(AuthContext)
+
+  console.log("Child Id ===>", childId)
+  console.log("User ===>", user)
+
+  const [editedChild, setEditedChild] = useState(null);
+
   const [errorMessage, setErrorMessage] = useState(undefined);
 
   const { storeToken, authenticateUser } = useContext(AuthContext);
@@ -18,20 +25,29 @@ const EditProfile = ({ user, setIsEditing }) => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setEditedUser((prev) => ({ ...prev, [name]: value }));
+    setEditedChild((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleEditSubmit = (e) => {
     e.preventDefault();
 
-    post('/users/update', editedUser)
+    const updatedUser = { ...user };
+
+    const childIndex = updatedUser.children.find((child) => child.id === childId)
+
+    updatedUser.children[childIndex] = {
+      ...updatedUser.children[childIndex],
+      ...editedChild,
+    };
+
+    post(`/child/edit-child/${childId}`, editedChild)
       .then((response) => {
         console.log('Updated User ===>', response.data.user);
         console.log('JWT token ===>', response.data.authToken);
         storeToken(response.data.authToken);
         setIsEditing(false); // Exit edit mode
         authenticateUser()
-        navigate('/profile');
+        navigate(`/child-profile/${childId}`);
       })
       .catch((err) => {
         const errorDescription = err.response.data.message;
@@ -39,37 +55,40 @@ const EditProfile = ({ user, setIsEditing }) => {
       });
   };
 
-
   useEffect(() => {
-    if(user) {
-      const { userName, email, img } = user
-      setEditedUser({
-        userName,
-        email,
-        img
-      })
+    if (user && user.children) {
+
+      const childToEdit = user.children.find((child) => child._id === childId);
+
+      if (childToEdit) {
+        setEditedChild({
+          name: childToEdit.name,
+          dateOfBirth: childToEdit.dateOfBirth,
+          img: childToEdit.img,
+        });
+      }
     }
-  }, [user])
+  }, [user, childId]);
 
   return (
     <div className="EditProfilePage">
-      <h1>Edit Profile</h1>
+      <h1>Edit Child Profile</h1>
 
-      {editedUser && (
+      {editedChild && (
         <form onSubmit={handleEditSubmit}>
-          <label>User Name:</label>
+          <label>Name:</label>
           <input
             type="text"
-            name="userName"
-            value={editedUser.userName}
+            name="name"
+            value={editedChild.name}
             onChange={handleInputChange}
           />
 
-          <label>Email:</label>
+          <label>Date of Birth:</label>
           <input
-            type="email"
-            name="email"
-            value={editedUser.email}
+            type="text"
+            name="dateOfBirth"
+            value={editedChild.dateOfBirth}
             onChange={handleInputChange}
           />
 
@@ -77,7 +96,7 @@ const EditProfile = ({ user, setIsEditing }) => {
           <input
             type="text"
             name="img"
-            value={editedUser.img}
+            value={editedChild.img}
             onChange={handleInputChange}
           />
 
@@ -89,11 +108,11 @@ const EditProfile = ({ user, setIsEditing }) => {
 
       {errorMessage && <p className="error-message">{errorMessage}</p>}
 
-      <Link to="/profile" onClick={handleEditClick}>
+      <Link to={`/child-profile/${childId}`} onClick={handleEditClick}>
         Back to Profile
       </Link>
     </div>
   );
-};
+}
 
-export default EditProfile;
+export default EditChild

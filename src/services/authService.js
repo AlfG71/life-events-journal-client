@@ -12,6 +12,7 @@ export const get = (route) => {
 
 export const post = (route, body) => {
   let token = localStorage.getItem("authToken");
+  console.log("token ===>", token)
 
   return axios.post(API_URL + route, body, {
     headers: { Authorization: `Bearer ${token}` },
