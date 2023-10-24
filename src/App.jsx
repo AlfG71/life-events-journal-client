@@ -11,6 +11,7 @@ import DeleteProfile from './components/DeleteProfile'
 import ChildProfile from './pages/ChildProfile'
 import EditChild from './components/EditChild'
 import ChildProfileDelete from './components/ChildProfileDelete'
+import AddEvent from './components/AddEvent'
 
 function App() {
   return (
@@ -24,7 +25,9 @@ function App() {
       <Route path="/child-profile/:childId" element={<ChildProfile />} />
       <Route path="/edit-child/:childId" element={<EditChild />} />
       <Route path='/delete-child/:childId' element={<ChildProfileDelete/>}/>
+      <Route path='/create/:childId' element={<AddEvent/>}/>
     </Routes>
+
   )
 }
 
