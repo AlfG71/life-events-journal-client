@@ -4,6 +4,8 @@ import { Link, Navigate, useNavigate } from "react-router-dom";
 import { post } from "../services/authService";
 import { useParams } from "react-router-dom";
 
+import { photo } from "../services/photo";
+
 const EditEvent = ({ setIsEditing }) => {
   const { childId, eventId } = useParams();
   const { user, storeToken, authenticateUser } = useContext(AuthContext); // added setUser, storeToken
@@ -11,6 +13,8 @@ const EditEvent = ({ setIsEditing }) => {
   const [editedEvent, setEditedEvent] = useState(null);
 
   const [errorMessage, setErrorMessage] = useState(undefined);
+
+  const [buttonDisabled, setButtonDisabled] = useState(false)
 
   const navigate = useNavigate();
 
@@ -64,6 +68,23 @@ const EditEvent = ({ setIsEditing }) => {
       });
   };
 
+  const handlePhotoChange = (e) => {
+    setButtonDisabled(true)
+
+        photo(e)
+          .then((response) => {
+            console.log(response.data);
+            console.log(response.data.image);
+            console.log()
+            setEditedEvent((prev) => ({...prev, [e.target.name]: response.data.image}));
+            setButtonDisabled(false);
+          })
+          .catch((err) => {
+            setButtonDisabled(false);
+            console.log("Error while uploading the file: ", err);
+          });
+  }
+
   useEffect(() => {
     const childToEdit = user.children.find((child) => child._id === childId);
 
@@ -115,13 +136,12 @@ const EditEvent = ({ setIsEditing }) => {
 
           <label>Image:</label>
           <input
-            type="text"
+            type="file"
             name="img"
-            value={editedEvent.img}
-            onChange={handleInputChange}
+            onChange={handlePhotoChange}
           />
 
-          <button type="submit" onClick={handleEditSubmit}>
+          <button type="submit" onClick={handleEditSubmit} disabled={buttonDisabled}>
             Save Changes
           </button>
         </form>

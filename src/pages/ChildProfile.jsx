@@ -20,7 +20,7 @@ const ChildProfile = () => {
     const navigate = useNavigate();
 
     const handleEditClick = () => {
-      setIsEditing(true);
+      setIsEditing(true)
     }
 
     const handleAddEventClick = () => {
@@ -81,6 +81,9 @@ const ChildProfile = () => {
           <button onClick={handleEditClick}>Edit Profile</button>
           <button onClick={deleteChildProfile}>Delete Profile</button>
           <button onClick={handleAddEventClick}>Add Event</button>
+          <Link to={`/profile`}>
+            Back to Profile
+          </Link>
         </div>
       ) : (
         <p>loading..</p>
