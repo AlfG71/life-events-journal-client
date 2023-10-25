@@ -52,47 +52,61 @@ const EditProfile = ({ user, setIsEditing }) => {
   }, [user])
 
   return (
-    <div className="EditProfilePage">
-      <h1>Edit Profile</h1>
+    <div className="EditProfilePage mt-5  container">
+    <h1 className="text-center mb-4">Edit Profile</h1>
 
-      {editedUser && (
-        <form onSubmit={handleEditSubmit}>
-          <label>User Name:</label>
-          <input
-            type="text"
-            name="userName"
-            value={editedUser.userName}
-            onChange={handleInputChange}
-          />
+    {editedUser && (
+        <form onSubmit={handleEditSubmit} className="my-4">
+            <div className="mb-3">
+                <label className="form-label">User Name:</label>
+                <input
+                    type="text"
+                    name="userName"
+                    value={editedUser.userName}
+                    onChange={handleInputChange}
+                    className="form-control"
+                />
+            </div>
 
-          <label>Email:</label>
-          <input
-            type="email"
-            name="email"
-            value={editedUser.email}
-            onChange={handleInputChange}
-          />
+            <div className="mb-3">
+                <label className="form-label">Email:</label>
+                <input
+                    type="email"
+                    name="email"
+                    value={editedUser.email}
+                    onChange={handleInputChange}
+                    className="form-control"
+                />
+            </div>
 
-          <label>Profile Image:</label>
-          <input
-            type="text"
-            name="img"
-            value={editedUser.img}
-            onChange={handleInputChange}
-          />
+            <div className="mb-3">
+                <label className="form-label">Profile Image:</label>
+                <input
+                    type="text"
+                    name="img"
+                    value={editedUser.img}
+                    onChange={handleInputChange}
+                    className="form-control"
+                />
+            </div>
 
-          <button to="/profile" type="submit" onClick={handleEditSubmit}>
-            Save Changes
-          </button>
+            <button 
+                to="/profile" 
+                type="submit" 
+                onClick={handleEditSubmit} 
+                className="btn btn-primary mb-3">
+                Save Changes
+            </button>
         </form>
-      )}
+    )}
 
-      {errorMessage && <p className="error-message">{errorMessage}</p>}
+    {errorMessage && <p className="error-message text-danger mt-2">{errorMessage}</p>}
 
-      <Link to="/profile" onClick={handleEditClick}>
+    <Link to="/profile" onClick={handleEditClick} className="btn btn-secondary btn-lg">
         Back to Profile
-      </Link>
-    </div>
+    </Link>
+</div>
+
   );
 };
 
