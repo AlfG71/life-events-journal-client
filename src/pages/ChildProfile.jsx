@@ -56,7 +56,7 @@ const ChildProfile = () => {
         .catch((err) => {
           console.log(err);
         })
-    }, [childId])
+    }, [childId, user])
 
     if (isEditing) {
       return <EditChild user={child} setIsEditing={setIsEditing} />;
