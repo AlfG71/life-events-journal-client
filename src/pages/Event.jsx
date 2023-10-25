@@ -37,6 +37,9 @@ const Event = () => {
                 <p>{event.date.slice(0, 10)}</p>
                 <img src={event.img} alt="Event image" />
                 <button onClick={handleEditClick}>Edit Event</button>
+                <Link to={`/child-profile/${childId}`} onClick={handleEditClick}>
+                  Back to Profile
+                </Link>
               </div>
             )
   }
