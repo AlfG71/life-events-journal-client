@@ -47,7 +47,7 @@ const Login = () => {
             name="email"
             value={email}
             onChange={handleEmail}
-            className="form-control rounded-input"  
+            className="form-control"  
           />
         </div>
   
@@ -58,11 +58,11 @@ const Login = () => {
             name="password"
             value={password}
             onChange={handlePassword}
-            className="form-control rounded-input" 
+            className="form-control" 
           />
         </div>
   
-        <button type="submit" className="btn btn-primary rounded-input">Login</button>
+        <button type="submit" className="btn btn-primary">Login</button>
       </form>
   
       { errorMessage && <p className="text-danger">{errorMessage}</p> } 
