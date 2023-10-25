@@ -28,10 +28,10 @@ const AddEvent = ({ setAddEvent }) => {
       post(`/events/create/${childId}`, eventData)
         .then((res) => {
           console.log(res);
-          // console.log('Created Event ===>', res.data.user);
+          console.log('Data ===>', res.data);
           // console.log('JWT token ===>', res.data.authToken)
           setAddEvent(false);
-          // storeToken(res.data.authToken);
+          storeToken(res.data.authToken);
           setUser(res.data.user);
         })
         .catch((err) => {

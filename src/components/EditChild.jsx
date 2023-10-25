@@ -4,6 +4,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { post } from "../services/authService";
 import { useParams } from "react-router-dom";
 
+import { photo } from "../services/photo";
+
 const EditChild = ({ setIsEditing }) => {
   const { childId } = useParams();
 
@@ -15,6 +17,8 @@ const EditChild = ({ setIsEditing }) => {
   const [editedChild, setEditedChild] = useState(null);
 
   const [errorMessage, setErrorMessage] = useState(undefined);
+
+  const [buttonDisabled, setButtonDisabled] = useState(false)
 
   const { storeToken, authenticateUser } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -55,6 +59,21 @@ const EditChild = ({ setIsEditing }) => {
       });
   };
 
+  const handlePhotoChange = (e) => {
+    setButtonDisabled(true)
+
+        photo(e)
+          .then((response) => {
+            console.log(response.data);
+            setEditedChild((prev) => ({...prev, [e.target.name]: response.data.image}));
+            setButtonDisabled(false);
+          })
+          .catch((err) => {
+            setButtonDisabled(false);
+            console.log("Error while uploading the file: ", err);
+          });
+  }
+
   useEffect(() => {
     if (user && user.children) {
 
@@ -94,13 +113,12 @@ const EditChild = ({ setIsEditing }) => {
 
           <label>Profile Image:</label>
           <input
-            type="text"
+            type="file"
             name="img"
-            value={editedChild.img}
-            onChange={handleInputChange}
+            onChange={handlePhotoChange}
           />
 
-          <button to="/profile" type="submit" onClick={handleEditSubmit}>
+          <button to="/profile" type="submit" onClick={handleEditSubmit} disabled={buttonDisabled}>
             Save Changes
           </button>
         </form>
