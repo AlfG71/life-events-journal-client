@@ -74,18 +74,18 @@ button:focus-visible {
 
 
 /* custom.css */
-.SignupPage {
-  background: linear-gradient(to top, #FAF0D7, #FFD9C0, #8CC0DE, #CCEEBC); /* This will show if the image isn't found or while it's loading */
-  background-size: cover;  /* To make sure the image covers the whole div */
-  background-blend-mode: multiply; /* This will blend the image with the background color */
-  border-radius: 25px;  /* Adjust this value to make it as rounded as you like */
+.SignupPage, .LoginPage {
+  background: linear-gradient(to top, #FAF0D7, #FFD9C0, #8CC0DE, #CCEEBC);
+  background-size: cover;
+  background-blend-mode: multiply;
 }
 
 
-.LoginPage{
+.commonPage {
   max-width: 500px;
   margin: auto;
   padding: 30px;
-  background-color: #f9f9f9;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #f9f7f7;
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.1);
+  border-radius: 25px;
 }

@@ -36,7 +36,7 @@ const Login = () => {
   }
 
   return (
-    <div className="LoginPage container"> 
+    <div className="LoginPage container commonPage"> 
       <h1 className="text-center">Login</h1> 
   
       <form onSubmit={handleLoginSubmit} className="my-4"> 
