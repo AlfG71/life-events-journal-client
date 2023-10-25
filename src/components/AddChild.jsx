@@ -36,35 +36,44 @@ const AddChild = ({ setAddChild }) => { // convert to false on click
   };
 
   return (
-    <div>
-      <h1>Add Child</h1>
-      <form onSubmit={handleSubmit}>
-        <label>Name:</label>
+    <div className="container mt-2 SignupPage commonPage w-1000">
+    <h1 className="text-center">Add Child</h1>
+    <form onSubmit={handleSubmit} className="my-4">
+      <div className="mb-3">
+        <label className="form-label">Name:</label>
         <input
           type="text"
           name="name"
           value={childData.name}
           onChange={handleInputChange}
+          className="form-control"
         />
+      </div>
 
-        <label>Date of Birth:</label>
+      <div className="mb-3">
+        <label className="form-label">Date of Birth:</label>
         <input
           type="date"
           name="dateOfBirth"
           value={childData.dateOfBirth}
           onChange={handleInputChange}
+          className="form-control"
         />
+      </div>
 
-        <label>Image URL:</label>
+      <div className="mb-3">
+        <label className="form-label">Image URL:</label>
         <input
           type="text"
           name="image"
           value={childData.image}
           onChange={handleInputChange}
+          className="form-control"
         />
+      </div>
 
-        <button type="submit">Add Child</button>
-      </form>
+      <button type="submit" className="btn btn-primary">Add Child</button>
+    </form>
     </div>
   );
 };

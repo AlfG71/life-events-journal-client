@@ -43,23 +43,22 @@ const Profile = () => {
           {user && (
             <>
               <h2 className="mt-3">Welcome {user.userName}!</h2>
-              <img className="img-fluid rounded-circle" src={user.img} alt="User Image" /> 
+              <img className="img-fluid rounded-circle commonPage" src={user.img} alt="User Image" /> 
               <p className="mt-3">
                 { user.children.map((child) => (
-                  
                     <Link className="btn btn-link" to={`/child-profile/${child._id}`}>{child.name}</Link>
                 ))}
               </p>
             </>
           )}
-         
           <button className="btn btn-primary me-2" onClick={handleAddChildClick}>Add Child</button>
           <button className="btn btn-secondary me-2" onClick={handleEditClick}>Edit Profile</button>
-          <button className="btn btn-danger me-2" onClick={handleWillDelete}>Delete Profile</button>
-          <Link className="btn btn-outline-dark" to="/signup">Logout</Link> 
+          <button className="btn btn-warning me-2" onClick={handleWillDelete}>Delete Profile</button>
+          <Link className="btn btn-danger" to="/signup">Logout</Link> 
         </div>
       </>
     );
+    
 
   }
 }
