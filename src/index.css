@@ -74,10 +74,11 @@ button:focus-visible {
 
 
 /* custom.css */
-.SignupPage, .LoginPage {
+.SignupPage, .LoginPage, .EditProfilePage{
   background: linear-gradient(to top, #FAF0D7, #FFD9C0, #8CC0DE, #CCEEBC);
   background-size: cover;
   background-blend-mode: multiply;
+  border-radius: 25px;
 }
 
 
@@ -87,7 +88,6 @@ button:focus-visible {
   padding: auto;
   background-color: #f9f7f7;
   box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
-  border-radius: 25px;
 }
 
 
