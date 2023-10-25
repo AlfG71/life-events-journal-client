@@ -4,6 +4,11 @@ import { Link, useNavigate, Route } from "react-router-dom"
 import { AuthContext } from "../context/auth.context";
 
 import { post } from "../services/authService";
+import '../index.css';
+
+
+
+
 
 
 const Signup = () => {
@@ -42,44 +47,52 @@ const Signup = () => {
 
 
   return (
-    <div className="SignupPage">
-      <h1>Create an account</h1>
+    <div className="SignupPage container commonPage"> 
+      <h1 className="text-center">Create an account</h1> 
 
-      <form onSubmit={handleSignupSubmit}>
-        <label>User Name</label>
-        <input
-          type="text"
-          name="userName"
-          value={userName}
-          onChange={handleUserName}
-        />
+      <form onSubmit={handleSignupSubmit} className="my-4"> 
+        <div className="mb-3"> 
+          <label className="form-label">User Name</label> 
+          <input
+            type="text"
+            name="userName"
+            value={userName}
+            onChange={handleUserName}
+            className="form-control"   
+          />
+        </div>
 
-        <label>Email</label>
-        <input
-          type="email"
-          name="email"
-          value={email}
-          onChange={handleEmail}
-        />
+        <div className="mb-3"> 
+          <label className="form-label">Email</label> 
+          <input
+            type="email"
+            name="email"
+            value={email}
+            onChange={handleEmail}
+            className="form-control"  
+          />
+        </div>
 
-        <label>Password</label>
-        <input
-          type="password"
-          name="password"
-          value={password}
-          onChange={handlePassword}
-        />
+        <div className="mb-3"> 
+          <label className="form-label">Password</label> 
+          <input
+            type="password"
+            name="password"
+            value={password}
+            onChange={handlePassword}
+            className="form-control "  
+          />
+        </div>
 
-        <button type="submit">Create account</button>
+        <button type="submit" className="btn btn-primary">Create account</button>
       </form>
 
-      { setErrorMessage && <p className="error-message">{errorMessage}</p> }
+      { errorMessage && <p className="text-danger">{errorMessage}</p> } 
 
       <p>Already have an account?</p>
-        <Link to="/login">Login</Link>
+      <Link to="/login" className="text-primary">Login</Link> 
     </div>
-
-  )
-}
+  );
+};
 
 export default Signup

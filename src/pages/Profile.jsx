@@ -38,24 +38,26 @@ const Profile = () => {
   } else {
     return (
       <>
-        <h1>Profile</h1>
-        {user && (
-          <>
-            <h2>Welcome {user.userName}!</h2>
-            <img className="user-image" src={user.img} alt="User Image" />
-            <p>
-              { user.children.map((child) => (
-
-                  <Link to={`/child-profile/${child._id}`}>{child.name}</Link>
-
-              ))}
-            </p>
-          </>
-        )}
-        <button onClick={handleAddChildClick}>Add Child</button>
-        <button onClick={handleEditClick}>Edit Profile</button>
-        <button onClick={handleWillDelete}>Delete Profile</button>
-        <Link to="/signup">Logout</Link>
+        <div className="container mt-5"> 
+          <h1 className="text-center">Profile</h1> 
+          {user && (
+            <>
+              <h2 className="mt-3">Welcome {user.userName}!</h2>
+              <img className="img-fluid rounded-circle" src={user.img} alt="User Image" /> 
+              <p className="mt-3">
+                { user.children.map((child) => (
+                  
+                    <Link className="btn btn-link" to={`/child-profile/${child._id}`}>{child.name}</Link>
+                ))}
+              </p>
+            </>
+          )}
+         
+          <button className="btn btn-primary me-2" onClick={handleAddChildClick}>Add Child</button>
+          <button className="btn btn-secondary me-2" onClick={handleEditClick}>Edit Profile</button>
+          <button className="btn btn-danger me-2" onClick={handleWillDelete}>Delete Profile</button>
+          <Link className="btn btn-outline-dark" to="/signup">Logout</Link> 
+        </div>
       </>
     );
 
