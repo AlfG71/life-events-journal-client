@@ -29,8 +29,7 @@ const ChildProfile = () => {
 
   console.log("User ===>", user);
   const child = user && user.children.find((item) => item._id === childId);
-  const date =
-    child && new Date(child.dateOfBirth.replace(/-/g, "/").replace(/T.+/, ""));
+  const date = child && new Date(child.dateOfBirth.replace(/-/g, "/").replace(/T.+/, ""));
 
   const deleteChildProfile = async () => {
     // Added method
@@ -95,7 +94,7 @@ const ChildProfile = () => {
               </div>
             </div>
             <div className="btn-group">
-              {events.map((event) => (
+              {child.events.map((event) => (
                 <Link
                   className="btn btn-outline-info me-2"
                   to={`/event/${childId}/${event._id}`}
@@ -107,7 +106,7 @@ const ChildProfile = () => {
             </div>
           </div>
         </div>
-        
+
           <button className="btn btn-secondary me-2" onClick={handleEditClick}>
             Edit Profile
           </button>
@@ -120,7 +119,7 @@ const ChildProfile = () => {
           <Link className="btn btn-secondary me-2" to={`/profile`}>
             Back to Profile
           </Link>
-        
+
       </div>
     ) : (
       <p>loading..</p>
