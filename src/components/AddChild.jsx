@@ -91,7 +91,7 @@ const AddChild = ({ setAddChild }) => { // convert to false on click
         />
       </div>
 
-      <button type="submit" className="btn btn-primary">Add Child</button>
+      <button type="submit" className="btn btn-primary" disabled={setButtonDisabled}>Add Child</button>
       <Link className="btn btn-secondary me-2" onClick={() => {setAddChild(false)}}>
           Cancel
       </Link>
