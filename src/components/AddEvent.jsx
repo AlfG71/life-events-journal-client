@@ -43,44 +43,57 @@ const AddEvent = ({ setAddEvent }) => {
 
 
   return (
-    <div>
-      <h1>Add Event</h1>
-      <form onSubmit={handleSubmit}>
-        <label>Event Name:</label>
-        <input
-          type="text"
-          name="eventTitle"
-          value={eventData.eventTitle}
-          onChange={handleInputChange}
-        />
-
-        <label>Date:</label>
-        <input
-          type="date"
-          name="date"
-          value={eventData.date}
-          onChange={handleInputChange}
-        />
-
-        <label>Description:</label>
-        <input
-          type="text"
-          name="description"
-          value={eventData.description}
-          onChange={handleInputChange}
-        />
-
-        <label>Image URL:</label>
-        <input
-          type="text"
-          name="image"
-          value={eventData.img}
-          onChange={handleInputChange}
-        />
-
-        <button type="submit">Add Event</button>
-      </form>
+    <div className="container mt-5 EditProfilePage">
+  <h1 className="text-center">Add Event</h1>
+  <form onSubmit={handleSubmit} className="my-4">
+    <div className="mb-3">
+      <label className="form-label">Event Name:</label>
+      <input
+        type="text"
+        name="eventTitle"
+        value={eventData.eventTitle}
+        onChange={handleInputChange}
+        className="form-control"
+      />
     </div>
+
+    <div className="mb-3">
+      <label className="form-label">Date:</label>
+      <input
+        type="date"
+        name="date"
+        value={eventData.date}
+        onChange={handleInputChange}
+        className="form-control"
+      />
+    </div>
+
+    <div className="mb-3">
+      <label className="form-label">Description:</label>
+      <input
+        type="text"
+        name="description"
+        value={eventData.description}
+        onChange={handleInputChange}
+        className="form-control"
+      />
+    </div>
+
+    <div className="mb-3">
+      <label className="form-label">Image URL:</label>
+      <input
+        type="text"
+        name="image"
+        value={eventData.img}
+        onChange={handleInputChange}
+        className="form-control"
+      />
+    </div>
+
+    <button type="submit" className="btn btn-primary">Add Event</button>
+  </form>
+</div>
+
   );
 }
 

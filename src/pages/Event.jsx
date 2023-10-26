@@ -53,17 +53,24 @@ const Event = () => {
     return <EditEvent user={event} setIsEditing={setIsEditing} />;
   } else {
       return ( event &&
-              <div className="event-profile">
-                <h1>{event.eventTitle}</h1>
-                <p>{event.description}</p>
-                <p>{event.date.slice(0, 10)}</p>
-                <img src={event.img} alt="Event image" />
-                <button onClick={handleEditClick}>Edit Event</button>
-                <Link to={`/child-profile/${childId}`} onClick={handleEditClick}>
-                  Back to Profile
-                </Link>
-                <button onClick={deleteEvent}>Delete Event</button>
-              </div>
+        <div className="container mt-5 event-profile EditProfilePage ">
+        <div className="card">
+          <div className="card-body">
+            <h1 className="card-title">{event.eventTitle}</h1>
+            <p className="card-text">{event.description}</p>
+            <p className="card-text">{event.date.slice(0, 10)}</p>
+            <img src={event.img} alt="Event image" className="img-fluid rounded mb-3"/>
+          </div>
+          <div className="card-footer text-center">
+            <button className="btn btn-primary me-2" onClick={handleEditClick}>Edit Event</button>
+            <Link className="btn btn-secondary me-2" to={`/child-profile/${childId}`} onClick={handleEditClick}>
+              Back to Profile
+            </Link>
+            <button className="btn btn-danger" onClick={deleteEvent}>Delete Event</button>
+          </div>
+        </div>
+      </div>
+      
             )
   }
 }
