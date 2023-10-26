@@ -36,7 +36,7 @@ const AddChild = ({ setAddChild }) => { // convert to false on click
   };
 
   return (
-    <div className="container mt-2 SignupPage commonPage w-1000">
+    <div className="container mt-2 SignupPage">
     <h1 className="text-center">Add Child</h1>
     <form onSubmit={handleSubmit} className="my-4">
       <div className="mb-3">

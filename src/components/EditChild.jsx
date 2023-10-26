@@ -90,46 +90,63 @@ const EditChild = ({ setIsEditing }) => {
   }, [user, childId]);
 
   return (
-    <div className="EditProfilePage">
+<div className="container mt-5 EditProfilePage">
+  <div className="card small-card">
+    <div className="card-header bg-primary text-white">
       <h1>Edit Child Profile</h1>
-
+    </div>
+    <div className="card-body">
       {editedChild && (
         <form onSubmit={handleEditSubmit}>
-          <label>Name:</label>
-          <input
-            type="text"
-            name="name"
-            value={editedChild.name}
-            onChange={handleInputChange}
-          />
-
-          <label>Date of Birth:</label>
-          <input
-            type="text"
-            name="dateOfBirth"
-            value={editedChild.dateOfBirth}
-            onChange={handleInputChange}
-          />
-
-          <label>Profile Image:</label>
-          <input
-            type="file"
-            name="img"
-            onChange={handlePhotoChange}
-          />
-
-          <button to="/profile" type="submit" onClick={handleEditSubmit} disabled={buttonDisabled}>
+          <div className="mb-3">
+            <label className="form-label">Name:</label>
+            <input
+              type="text"
+              className="form-control"
+              name="name"
+              value={editedChild.name}
+              onChange={handleInputChange}
+            />
+          </div>
+          <div className="mb-3">
+            <label className="form-label">Date of Birth:</label>
+            <input
+              type="text"
+              className="form-control"
+              name="dateOfBirth"
+              value={editedChild.dateOfBirth}
+              onChange={handleInputChange}
+            />
+          </div>
+          <div className="mb-3">
+            <label className="form-label">Profile Image:</label>
+            <input
+              type="file"
+              className="form-control"
+              name="img"
+              onChange={handlePhotoChange}
+            />
+          </div>
+          <button
+            className="btn btn-success"
+            to="/profile"
+            type="submit"
+            onClick={handleEditSubmit}
+            disabled={buttonDisabled}
+          >
             Save Changes
           </button>
         </form>
       )}
-
-      {errorMessage && <p className="error-message">{errorMessage}</p>}
-
-      <Link to={`/child-profile/${childId}`} onClick={handleEditClick}>
+    </div>
+    <div className="card-footer">
+      {errorMessage && <p className="text-danger">{errorMessage}</p>}
+      <Link className="btn btn-secondary" to={`/child-profile/${childId}`} onClick={handleEditClick}>
         Back to Profile
       </Link>
     </div>
+  </div>
+</div>
   );
 }
 

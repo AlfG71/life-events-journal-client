@@ -105,52 +105,67 @@ const EditEvent = ({ setIsEditing }) => {
 
   return (
 
-    <div className="EditProfilePage">
-      <h1>Edit Event</h1>
+    <div className="container mt-5 EditProfilePage">
+  <h1 className="text-center">Edit Event</h1>
 
-      {editedEvent && (
-        <form onSubmit={handleEditSubmit}>
-          <label>Event Title:</label>
-          <input
-            type="text"
-            name="eventTitle"
-            value={editedEvent.eventTitle}
-            onChange={handleInputChange}
-          />
+  {editedEvent && (
+    <form onSubmit={handleEditSubmit} className="my-4">
+      <div className="mb-3">
+        <label className="form-label">Event Title:</label>
+        <input
+          type="text"
+          name="eventTitle"
+          value={editedEvent.eventTitle}
+          onChange={handleInputChange}
+          className="form-control"
+        />
+      </div>
 
-          <label>Date:</label>
-          <input
-            type="text"
-            name="date"
-            value={editedEvent.date}
-            onChange={handleInputChange}
-          />
+      <div className="mb-3">
+        <label className="form-label">Date:</label>
+        <input
+          type="text"
+          name="date"
+          value={editedEvent.date}
+          onChange={handleInputChange}
+          className="form-control"
+        />
+      </div>
 
-          <label>Description:</label>
-          <input
-            type="text"
-            name="description"
-            value={editedEvent.description}
-            onChange={handleInputChange}
-          />
+      <div className="mb-3">
+        <label className="form-label">Description:</label>
+        <input
+          type="text"
+          name="description"
+          value={editedEvent.description}
+          onChange={handleInputChange}
+          className="form-control"
+        />
+      </div>
 
-          <label>Image:</label>
-          <input
-            type="file"
-            name="img"
-            onChange={handlePhotoChange}
-          />
+      <div className="mb-3">
+        <label className="form-label">Image:</label>
+        <input
+          type="file"
+          name="img"
+          onChange={handlePhotoChange}
+          className="form-control"
+        />
+      </div>
 
-          <button type="submit" onClick={handleEditSubmit} disabled={buttonDisabled}>
-            Save Changes
-          </button>
-        </form>
-      )}
+      <button type="submit" className="btn btn-primary" onClick={handleEditSubmit} disabled={buttonDisabled}>
+        Save Changes
+      </button>
+    </form>
+  )}
 
-      {errorMessage && <p className="error-message">{errorMessage}</p>}
+  {errorMessage && <p className="text-danger mt-2">{errorMessage}</p>}
 
-      <button onClick={handleEditClick}>Cancel</button>
-    </div>
+  <button className="btn btn-secondary mt-3" onClick={handleEditClick}>
+    Cancel
+  </button>
+</div>
+
 
   )
 }

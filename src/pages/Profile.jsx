@@ -38,7 +38,7 @@ const Profile = () => {
   } else {
     return (
       <>
-        <div className="container mt-5"> 
+        <div className="container mt-5 EditProfilePage"> 
           <h1 className="text-center">Profile</h1> 
           {user && (
             <>
