@@ -36,39 +36,39 @@ const Login = () => {
   }
 
   return (
-    <div className="LoginPage container commonPage"> 
-      <h1 className="text-center">Login</h1> 
-  
-      <form onSubmit={handleLoginSubmit} className="my-4"> 
-        <div className="mb-3"> 
-          <label className="form-label">Email:</label> 
+    <div className="LoginPage container commonPage">
+      <h1 className="text-center">Login</h1>
+
+      <form onSubmit={handleLoginSubmit} className="my-4">
+        <div className="mb-3">
+          <label className="form-label">Email:</label>
           <input
             type="email"
             name="email"
             value={email}
             onChange={handleEmail}
-            className="form-control"  
+            className="form-control"
           />
         </div>
-  
-        <div className="mb-3"> 
-          <label className="form-label">Password:</label> 
+
+        <div className="mb-3">
+          <label className="form-label">Password:</label>
           <input
             type="password"
             name="password"
             value={password}
             onChange={handlePassword}
-            className="form-control" 
+            className="form-control"
           />
         </div>
-  
+
         <button type="submit" className="btn btn-primary">Login</button>
       </form>
-  
-      { errorMessage && <p className="text-danger">{errorMessage}</p> } 
-  
+
+      { errorMessage && <p className="text-danger">{errorMessage}</p> }
+
       <p>Don't have an account yet?</p>
-      <Link to="/signup" className="text-primary">Sign up</Link> 
+      <Link to="/" className="text-primary">Sign up</Link>
     </div>
   );
 }
