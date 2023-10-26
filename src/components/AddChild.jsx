@@ -92,7 +92,7 @@ const AddChild = ({ setAddChild }) => { // convert to false on click
       </div>
 
       <button type="submit" className="btn btn-primary">Add Child</button>
-      <Link className="btn btn-secondary me-2" to="/profile" onClick={() => {Navigate("/profile/childId")}}>
+      <Link className="btn btn-secondary me-2" onClick={() => {setAddChild(false)}}>
           Cancel
       </Link>
     </form>
