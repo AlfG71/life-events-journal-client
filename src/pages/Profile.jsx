@@ -55,7 +55,7 @@ const Profile = () => {
           <button className="btn btn-primary me-2" onClick={handleAddChildClick}>Add Child</button>
           <button className="btn btn-secondary me-2" onClick={handleEditClick}>Edit Profile</button>
           <button className="btn btn-warning me-2" onClick={handleWillDelete}>Delete Profile</button>
-          <Link className="btn btn-danger" to="/signup">Logout</Link>
+          <Link className="btn btn-danger" to="/">Logout</Link>
         </div>
       </>
     );

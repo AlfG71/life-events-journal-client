@@ -3,11 +3,15 @@ import { AuthContext } from "../context/auth.context";
 import { Link, useNavigate } from "react-router-dom";
 import { post } from "../services/authService";
 
+import { photo } from "../services/photo";
+
 const EditProfile = ({ user, setIsEditing }) => {
   console.log(user)
 
   const [editedUser, setEditedUser] = useState(null); //Initialize editedUser with the user's data
   const [errorMessage, setErrorMessage] = useState(undefined);
+
+  const [buttonDisabled, setButtonDisabled] = useState(false)
 
   const { storeToken, authenticateUser } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -38,6 +42,23 @@ const EditProfile = ({ user, setIsEditing }) => {
         setErrorMessage(errorDescription);
       });
   };
+
+  const handlePhotoChange = (e) => {
+    setButtonDisabled(true)
+
+        photo(e)
+          .then((response) => {
+            // console.log(response.data);
+            // console.log(response.data.image);
+            setEditedUser((prev) => ({...prev, [e.target.name]: response.data.image}));
+            // console.log("User ===>", editedUser)
+            setButtonDisabled(false);
+          })
+          .catch((err) => {
+            setButtonDisabled(false);
+            console.log("Error while uploading the file: ", err);
+          });
+  }
 
 
   useEffect(() => {
@@ -82,18 +103,17 @@ const EditProfile = ({ user, setIsEditing }) => {
             <div className="mb-3">
                 <label className="form-label">Profile Image:</label>
                 <input
-                    type="text"
+                    type="file"
                     name="img"
-                    value={editedUser.img}
-                    onChange={handleInputChange}
+                    onChange={handlePhotoChange}
                     className="form-control"
                 />
             </div>
 
-            <button 
-                to="/profile" 
-                type="submit" 
-                onClick={handleEditSubmit} 
+            <button
+                to="/profile"
+                type="submit"
+                onClick={handleEditSubmit}
                 className="btn btn-primary mb-3">
                 Save Changes
             </button>

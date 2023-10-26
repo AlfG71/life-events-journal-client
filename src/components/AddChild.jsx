@@ -1,6 +1,9 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useNavigate } from "react";
 import { AuthContext } from "../context/auth.context";
 import { post } from "../services/authService";
+import { Link, Navigate } from "react-router-dom";
+
+import { photo } from "../services/photo";
 
 const AddChild = ({ setAddChild }) => { // convert to false on click
   const { user, setUser, storeToken } = useContext(AuthContext);
@@ -8,10 +11,12 @@ const AddChild = ({ setAddChild }) => { // convert to false on click
   const [childData, setChildData] = useState({
     name: "",
     dateOfBirth: "",
-    image: "",
+    img: "",
   });
 
   const [errorMessage, setErrorMessage] = useState(undefined);
+
+  const [buttonDisabled, setButtonDisabled] = useState(false)
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -34,6 +39,21 @@ const AddChild = ({ setAddChild }) => { // convert to false on click
         next(err);
       })
   };
+
+  const handlePhotoChange = (e) => {
+    setButtonDisabled(true)
+
+        photo(e)
+          .then((response) => {
+            console.log("Response ===> ", response.data);
+            setChildData((prev) => ({...prev, [e.target.name]: response.data.image}));
+            setButtonDisabled(false);
+          })
+          .catch((err) => {
+            setButtonDisabled(false);
+            console.log("Error while uploading the file: ", err);
+          });
+  }
 
   return (
     <div className="container mt-2 SignupPage">
@@ -64,15 +84,17 @@ const AddChild = ({ setAddChild }) => { // convert to false on click
       <div className="mb-3">
         <label className="form-label">Image URL:</label>
         <input
-          type="text"
-          name="image"
-          value={childData.image}
-          onChange={handleInputChange}
+          type="file"
+          name="img"
+          onChange={handlePhotoChange}
           className="form-control"
         />
       </div>
 
       <button type="submit" className="btn btn-primary">Add Child</button>
+      <Link className="btn btn-secondary me-2" to="/profile" onClick={() => {Navigate("/profile/childId")}}>
+          Cancel
+      </Link>
     </form>
     </div>
   );

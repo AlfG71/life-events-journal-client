@@ -1,12 +1,16 @@
 import { useState, useContext } from "react";
 import { AuthContext } from "../context/auth.context";
-import { useParams } from "react-router-dom";
+import { useParams, Link, Navigate } from "react-router-dom";
 import { post } from "../services/authService";
+
+import { photo } from "../services/photo";
 
 const AddEvent = ({ setAddEvent }) => {
     const { childId } = useParams();
 
     const { user, setUser, storeToken } = useContext(AuthContext)
+
+    const [buttonDisabled, setButtonDisabled] = useState(false)
 
     const [eventData, setEventData] = useState({
       eventTitle: '',
@@ -39,6 +43,21 @@ const AddEvent = ({ setAddEvent }) => {
           next(err);
         })
     };
+
+    const handlePhotoChange = (e) => {
+      setButtonDisabled(true)
+
+          photo(e)
+            .then((response) => {
+              console.log("Response ===> ", response.data);
+              setEventData((prev) => ({...prev, [e.target.name]: response.data.image}));
+              setButtonDisabled(false);
+            })
+            .catch((err) => {
+              setButtonDisabled(false);
+              console.log("Error while uploading the file: ", err);
+            });
+    }
 
 
 
@@ -82,15 +101,17 @@ const AddEvent = ({ setAddEvent }) => {
     <div className="mb-3">
       <label className="form-label">Image URL:</label>
       <input
-        type="text"
-        name="image"
-        value={eventData.img}
-        onChange={handleInputChange}
+        type="file"
+        name="img"
+        onChange={handlePhotoChange}
         className="form-control"
       />
     </div>
 
     <button type="submit" className="btn btn-primary">Add Event</button>
+    <Link className="btn btn-secondary me-2" onClick={() => {Navigate(`/profile/${childId}`)}}>
+          Cancel
+    </Link>
   </form>
 </div>
 
