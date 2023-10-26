@@ -12,15 +12,15 @@ const DeleteProfile = ({ user, setWillDelete }) => {
     const confirmDelete = window.confirm('Do you really want to cancel your profile?');
     if (confirmDelete) {
         axiosDelete('/users/delete')
-        
+
       .then(data => {
         alert('User information deleted.');
-        navigate('/signup');
+        navigate('/');
       })
       .catch(error => {
         alert(error.message || 'An error occurred while deleting your profile.');
       });
-    } 
+    }
     else{navigate('/')}
   };
 
