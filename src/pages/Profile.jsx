@@ -39,7 +39,7 @@ const Profile = () => {
   } else {
     return (
       <>
-      
+
         <div className="container mt-5 EditProfilePage">
           <h1 className="text-center">Profile</h1>
           {user && (
@@ -49,7 +49,7 @@ const Profile = () => {
               <p className="mt-3">
                 { user.children.map((child) => (
                     <Link className="btn btn-link" to={`/child-profile/${child._id}`}>
-                      <img src={child.img} alt={child.name} className="img-fluid"/>
+                      <img src={child.img} alt={child.name} className="img-fluid img-thumbnail"/>
                     </Link>
                 ))}
               </p>
