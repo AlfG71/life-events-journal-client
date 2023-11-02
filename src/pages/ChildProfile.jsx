@@ -28,6 +28,25 @@ const ChildProfile = () => {
   };
 
   console.log("User ===>", user);
+  // console.log("DOB ===>", user.children[0].dateOfBirth);
+  const DOB = user.children[0].dateOfBirth;
+  const formatDOBRegex = /(\d{4})-(\d{2})-(\d{2})/;
+
+  const formattedDOB = formatDOBRegex.exec(DOB);
+  // console.log("Formatted DOB ===>", formattedDOB);
+
+  let formattedDate;
+
+  if (formattedDOB) {
+    const year = formattedDOB[1];
+    const month = formattedDOB[2];
+    const day = formattedDOB[3];
+    formattedDate = `${month}/${day}/${year}`;
+    console.log(formattedDate); // Output: "10/02/2011"
+  } else {
+    console.log('Date not found in the input string.');
+  }
+
   const child = user && user.children.find((item) => item._id === childId);
   const date = child && new Date(child.dateOfBirth.replace(/-/g, "/").replace(/T.+/, ""));
 
@@ -78,7 +97,8 @@ const ChildProfile = () => {
               <div className="col-md-6">
                 <p className="card-text">
                   <strong>Date of Birth:</strong>{" "}
-                  {child.dateOfBirth.slice(0, 10)}
+                    {formattedDate}
+                  {/* {child.dateOfBirth.slice(0, 10)} */}
                 </p>
                 <p className="card-text">
                   <strong>Age:</strong>{" "}

@@ -38,22 +38,23 @@ const Profile = () => {
     return <AddChild user={user} setAddChild={setAddChild} />
   } else {
     return (
-      <>
-
-        <div className="container mt-5 EditProfilePage">
-          <h1 className="text-center">Profile</h1>
-          {user && (
-            <>
-              <h2 className="mt-3">Welcome {user.userName}!</h2>
-              <img className="img-fluid rounded-circle commonPage" src={user.img} alt="User Image" />
+<>
+      <div className="container mt-5 EditProfilePage">
+        <h1 className="text-center">Home</h1>
+        {user && (
+          <>
+            <h2 className="mt-3">Welcome {user.userName}!</h2>
+            <img className="img-fluid rounded-circle profile-picture" src={user.img} alt="User Image" />
+            <div className="row">
               <p className="mt-3">
                 { user.children.map((child) => (
-                    <Link className="btn btn-link" to={`/child-profile/${child._id}`}>
-                      <img src={child.img} alt={child.name} className="img-fluid img-thumbnail"/>
+                    <Link className="col-3 thumbnail-link" to={`/child-profile/${child._id}`}>
+                      <img src={child.img} alt={child.name} className="img-fluid img-thumbnail thumbnail-img rounded-circle border border-info border border-2"/>
                     </Link>
                 ))}
               </p>
-            </>
+            </div>
+          </>
           )}
           <button className="btn btn-primary me-2" onClick={handleAddChildClick}>Add Child</button>
           <button className="btn btn-secondary me-2" onClick={handleEditClick}>Edit Profile</button>

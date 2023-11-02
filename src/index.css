@@ -4,7 +4,7 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
+  color:  rgba(255, 255, 255, 0.87);
   background-color: #242424;
 
   font-synthesis: none;
@@ -24,7 +24,7 @@ a:hover {
 }
 
 body {
- 
+
   background-image: url('https://img.freepik.com/free-vector/kids-doodles_1108-181.jpg?w=826&t=st=1698181491~exp=1698182091~hmac=729ae741d3b89f5cae48fb8bcb820b532efbfac81c32bb859645115a3753cec8');
   margin: 0;
   display: flex;
@@ -93,3 +93,18 @@ button:focus-visible {
 
 
 
+.profile-picture, .event-picture {
+  width: 200px;  /* You can adjust this */
+  height: 200px;  /* You can adjust this */
+  margin-bottom: 20px;
+}
+
+.thumbnail-link {
+  margin-bottom: 20px;
+}
+
+.thumbnail-img {
+  width: 100px;  /* Set the width */
+  height: 100px;  /* Set the height */
+  border-radius: 50% 25% ;
+}

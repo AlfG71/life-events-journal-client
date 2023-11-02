@@ -59,7 +59,7 @@ const Event = () => {
             <h1 className="card-title">{event.eventTitle}</h1>
             <p className="card-text">{event.description}</p>
             <p className="card-text">{event.date.slice(0, 10)}</p>
-            <img src={event.img} alt="Event image" className="img-fluid rounded mb-3"/>
+            <img src={event.img} alt="Event image" className="img-fluid rounded mb-3 event-picture"/>
           </div>
           <div className="card-footer text-center">
             <button className="btn btn-primary me-2" onClick={handleEditClick}>Edit Event</button>
@@ -70,7 +70,7 @@ const Event = () => {
           </div>
         </div>
       </div>
-      
+
             )
   }
 }
