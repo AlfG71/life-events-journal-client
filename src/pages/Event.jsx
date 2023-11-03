@@ -22,7 +22,26 @@ const Event = () => {
 
   const child = user && user.children.find((item) => item._id === childId)
   const event = child && child.events.find((event) => event._id === eventId)
-  const date = event && String(new Date(event.date.replace(/-/g, '\/').replace(/T.+/, '')))
+  const eventDate = event.date;
+  // console.log(eventDate);
+  const formatEventDateRegex = /(\d{4})-(\d{2})-(\d{2})/;
+
+  const formattedEventDate = formatEventDateRegex.exec(eventDate);
+
+  // console.log(formattedEventDate);
+
+  let formattedDate;
+
+  if (formattedEventDate) {
+    const year = formattedEventDate[1];
+    const month = formattedEventDate[2];
+    const day = formattedEventDate[3];
+    formattedDate = `${month}/${day}/${year}`;
+    console.log(formattedDate); // Output: "10/02/2011"
+  } else {
+    console.log('Date not found in the input string.');
+  }
+  // const date = event && String(new Date(event.date.replace(/-/g, '\/').replace(/T.+/, '')))
 
   // const regexPattern = /[A-Z][a-z]{2} \d{2} \d{4}/;
 
@@ -58,7 +77,8 @@ const Event = () => {
           <div className="card-body">
             <h1 className="card-title">{event.eventTitle}</h1>
             <p className="card-text">{event.description}</p>
-            <p className="card-text">{event.date.slice(0, 10)}</p>
+            <p className="card-text">{formattedDate}</p>
+            {/* <p className="card-text">{event.date.slice(0, 10)}</p> */}
             <img src={event.img} alt="Event image" className="img-fluid rounded mb-3 event-picture"/>
           </div>
           <div className="card-footer text-center">
